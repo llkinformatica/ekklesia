@@ -1,0 +1,14 @@
+<a href='pessoas/<%= pessoa.id %>'>
+<div id="<%= dom_id pessoa %>" class="flex justify-between bg-white shadow my-1 py-2 w-full lg:px-4 border border-gray-300">
+  <li class="flex justify-between items-center bg-white mt-2 p-2 hover:shadow-lg rounded cursor-pointer transition">
+      <div class="flex ml-2"> 
+         <% if pessoa.imagem.attached? %>
+            <%= image_tag(pessoa.imagem, class: 'w-[50px] h-[50px] rounded-full') %>
+         <% else %>
+           <img src="https://i.imgur.com/aq39RMA.jpg" width="50" height="50" class="rounded-full">
+         <% end %>  
+         <div class="flex flex-col ml-2"> <span class="font-medium text-black"><%= pessoa.nome %> <%= pessoa.sobrenome %></span> <span class="text-sm text-gray-400 w-48"><%= pessoa.data_nascimento.strftime('%d/%m/%Y') %> - <%= ((Time.zone.now - pessoa.data_nascimento.to_time) / 1.year.seconds).floor if pessoa.data_nascimento.present? %> anos</span> </div>
+      </div>
+  </li>
+</div>
+</a>

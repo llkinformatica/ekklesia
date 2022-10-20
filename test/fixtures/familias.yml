@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pessoa: one
+  identificador_familia: MyString
+  mesmo_endereco: false
+
+two:
+  pessoa: two
+  identificador_familia: MyString
+  mesmo_endereco: false

@@ -1,0 +1,33 @@
+<div class="py-4 px-3 bg-blue-700 sm:hidden">
+  <h2 class="text-1xl font-medium text-white"><%= Figaro.env.app_name %></h2>
+</div>
+
+<div class="flex flex-col w-full bg-white shadow">
+    
+  <%= render 'shared/localiza_pessoa' %>
+  
+  <div class="flex justify-between w- h-16 content-center items-center">
+    <p class="w-full py-2 mx-4 text-lg text-gray-700">Listagem das pessoas</p>
+    <%= link_to 'Novo', new_pessoa_path, class: "flex py-2 h-9 rounded-lg px-5 mx-10 bg-blue-700 hover:bg-blue-800 text-sm text-white block font-medium" %>
+  </div>
+
+</div>
+
+<div>
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
+</div>
+
+<div class="container my-12 mx-auto px-4 md:px-12"><ul>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <%= render @pessoas %>
+    </div></ul>
+</div>
+
+<div class="max-w-content flex flex-row flex-no-wrap my-5 mx-10 text-xs text-gray-700">
+   <%== pagy_nav(@pagy) %>
+</div>
+
+</div>
+</div>

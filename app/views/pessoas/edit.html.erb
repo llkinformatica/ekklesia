@@ -1,0 +1,10 @@
+<div class="flex flex-col w-full h-24 py-4 bg-white shadow">
+  <%= link_to '<i class="fas fa-chevron-left" aria-hidden="true"></i> Pessoas'.html_safe, pessoas_path, class: "text-xs text-gray-700 mx-4 content-center w-full" %>
+  <p class="w-full mt-2 mx-4 text-lg text-gray-700">Editando uma pessoa</p>
+</div>
+
+<div class="mx-auto md:w-2/3 w-full">
+
+  <%= render "form", pessoa: @pessoa %>
+
+</div>

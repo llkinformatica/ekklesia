@@ -1,0 +1,10 @@
+<turbo-frame id="grupos">
+  <div id="<%= dom_id grupo %>">
+    <p class="flex w-full justify-between">
+      <%= grupo.descricao %> 
+      <%= link_to "Ver Grupo", grupo, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+      <%= link_to 'Edit this grupo', edit_grupo_path(grupo), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+      <hr class="mt-6">
+    </p>
+  </div>
+</turbo-frame>

@@ -1,0 +1,27 @@
+[
+	{
+		"label": "Dashboard",
+		"icon": "",
+        "url": "/"
+	},
+	{
+		"label": "Pessoas",
+		"icon": "",
+        "url": "/pessoas"
+	},
+	{
+		"label": "Grupos",
+		"icon": "",
+        "url": "/grupos"
+	},
+	{
+		"label": "Contribuição",
+		"icon": "",
+        "url": "/financeiro"
+	},
+	{
+		"label": "Configurações",
+		"icon": "",
+        "url": "/empresas"
+	}
+]

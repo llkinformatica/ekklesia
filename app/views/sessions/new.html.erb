@@ -1,0 +1,47 @@
+<div class="relative bg-gray-900">
+
+
+<div class="hidden bg-cover lg:block relative md:fixed w-full md:w-7/12 lg:w-2/3 min-h-screen inset-0" style="background-image: url(<%= Figaro.env.app_wallpaper %>)">
+
+        <div class="flex flex-col justify-center mx-16 min-h-screen">
+            <h1 class="text-[#e0ae00] text-8xl"><%= Figaro.env.app_name %></span></h1>
+            <p class="text-white text-4xl"><%= Figaro.env.app_description %></p>
+        </div>
+
+    </div>
+
+    <div class="flex flex-col justify-center w-full md:w-5/12 lg:w-2/6 ml-auto px-12 min-h-screen py-4">
+
+        <div class="text-center">
+        
+            <h2 class="text-4xl font-bold text-center text-white">Entrar no Sistema!</h2>
+                    
+            <p class="mt-3 text-gray-300">Digite seu nome de usuário e a sua senha.</p>
+            
+        </div>
+
+        <div class="mt-8">
+                
+        <%= form_with url: login_path, scope: :usuario, class: "contents" do |f| %>
+
+            <div class="my-5">
+                <%= f.label "Usuário", class: "text-white text-sm" %>
+                <%= f.text_field :username, autocomplete: nil, autofocus: true, placeholder: "Username", class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+            </div>
+
+            <div class="my-5">
+                <%= f.label "Senha",  class: "text-white text-sm" %>
+                <%= f.password_field :password, autocomplete: nil, placeholder:"Sua senha", class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+            </div>
+
+            <div class="inline my-5">
+                <%= f.submit "Entrar", class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer mt-2" %>
+            </div>
+
+        <% end %>
+
+        </div>
+
+    </div>
+
+</div>

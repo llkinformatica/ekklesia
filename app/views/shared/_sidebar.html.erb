@@ -1,0 +1,89 @@
+<%
+    root = Rails.root.to_s #make sure string    
+    puts "#{root}/public/menu.json"
+    file = File.read("#{root}/public/menu.json")
+    json_object = JSON.parse(file)
+%>
+
+<div id="sidebar" class="w-64 px-2 h-screen absolute sm:relative bg-gray-800 shadow flex-col justify-between hidden sm:flex">
+
+    <div class="pt-5 pb-2 px-6">
+
+        <div class="grow flex justify-center w-full">
+
+            <h2 class="text-3xl font-semibold text-orange-600"><%= Figaro.env.app_name %></h2>
+
+        </div>
+
+    </div>
+
+    <hr class="my-6 border-gray-600" />
+
+    <div class="relative">
+        <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+            <svg class="w-5 h-5 text-gray-400" viewBox="0 0 24 24" fill="none">
+                <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+        </span>
+    </div>
+    
+    <div class="flex flex-col justify-between flex-1">
+        <nav>
+            <% json_object.each do |menu| %>           
+                <% 
+                   if request.path === menu["url"]
+                     st = "flex items-center px-4 py-2 mt-1 text-xs text-gray-100 border-l-4 border-orange-600"
+                   elsif request.path.include? menu["url"] and menu["url"] != '/'
+                     st = "flex items-center px-4 py-2 mt-1 text-xs text-gray-100 border-l-4 border-orange-600"
+                   else
+                     st = "flex items-center px-4 py-2 mt-1 text-xs text-gray-100"
+                   end 
+                %>
+                <%= link_to menu["label"], menu["url"], class: st %>
+            <% end %>
+
+            <hr class="my-6 border-gray-600" />
+
+            <%= button_to sair_path, method: :delete,  class: "flex items-center px-4 py-2 mt-1 text-xs text-gray-100 rounded-md" do  %>
+                <span>Sair do Sistema</span>
+            <% end %>
+
+        </nav>
+
+        <% if usuario_signed_in? %>
+            <div class="pt-4 pb-2 px-6">
+
+                <div class="flex items-center">
+                    <div class="shrink-0">
+                        <% if current_usuario.imagem.attached? %>
+                            <%= image_tag(current_usuario.imagem, class: 'rounded-full w-[50px] h-[50px]  bg-gray-900') %>
+                        <% end %>                        
+                    </div>
+                    <div class="grow flex justify-center w-full my-2">
+                        <p class="text-sm font-semibold text-orange-600"><%= link_to current_usuario.nome, edit_usuario_path %></p>
+                    </div>
+                </div>
+                
+            </div>
+        <% end %>
+    </div>
+</div>
+
+<script>
+      var sideBar = document.getElementById("sidebar");
+      var openSidebar = document.getElementById("openSideBar");
+      var closeSidebar = document.getElementById("closeSideBar");
+      sideBar.style.transform = "translateX(0px)";
+
+      function sidebarHandler(flag) {
+          if (flag) {
+              sideBar.style.transform = "translateX(0px)";
+              openSidebar.classList.add("hidden");
+              closeSidebar.classList.remove("hidden");
+          } else {
+              sideBar.style.transform = "translateX(-260px)";
+              closeSidebar.classList.add("hidden");
+              openSidebar.classList.remove("hidden");
+          }
+      }
+  </script>  

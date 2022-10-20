@@ -1,0 +1,37 @@
+<div id="<%= dom_id empresa %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Nome:</strong>
+    <%= empresa.nome %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Cnpj:</strong>
+    <%= empresa.cnpj %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Telefone:</strong>
+    <%= empresa.telefone %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Email:</strong>
+    <%= empresa.email %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Subdomain:</strong>
+    <%= empresa.subdomain %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Usuario:</strong>
+    <%= empresa.usuario_id %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this empresa", empresa, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this empresa', edit_empresa_path(empresa), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

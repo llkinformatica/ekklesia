@@ -1,0 +1,46 @@
+<!-- app/views/users/new.html.erb -->
+<%= form_with(model: usuario, class: "contents text-gray-600") do |form| %>
+  
+  <div class="my-5">
+    <%= form.label :nome, class: "text-sm" %>
+    <%= form.text_field :nome, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :bio, class: "text-sm" %>
+    <%= form.cktext_area :bio, as: :ckeditor, class: 'block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full', input_html: { ckeditor: { toolbar: 'Full' } } %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label "Nome de Usuário", class: "text-sm" %>
+    <%= form.text_field :username, required: true, class: 'block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full' %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label "Senha",  class: "text-sm" %>
+    <%= form.password_field :password, required: true, class: 'block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full' %>
+  </div>
+
+  <div class="my=5">
+    <%= form.label "Repita a sua senha", class: "text-sm" %>
+    <%= form.password_field :password_confirmation, required: true, class: 'block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full' %>
+  </div>
+
+  <div class="container bg-white shadow p-4 mt-4">
+    <div class="my=5">
+      <%= form.label :imagem, class: "text-sm" %>
+      <%= form.file_field :imagem, multiple: false, class: "my-5" %> 
+    </div> 
+
+    <div class="my=5">
+      <% if usuario.imagem.attached? %>
+          <%= image_tag(usuario.imagem, class: 'w-64 h-auto block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2') %>
+      <% end %>        
+    </div>   
+  </div>
+
+  <div class="inline my-5">
+    <%= form.submit "Criar Usuário", class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer mt-2" %>
+  </div>
+
+<% end %>
