@@ -7,7 +7,7 @@
          <% else %>
            <img src="https://i.imgur.com/aq39RMA.jpg" width="50" height="50" class="rounded-full">
          <% end %>  
-         <div class="flex flex-col ml-2"> <span class="font-medium text-black"><%= pessoa.nome %> <%= pessoa.sobrenome %></span> <span class="text-sm text-gray-400 w-48"><%= pessoa.data_nascimento.strftime('%d/%m/%Y') %> - <%= ((Time.zone.now - pessoa.data_nascimento.to_time) / 1.year.seconds).floor if pessoa.data_nascimento.present? %> anos</span> </div>
+         <div class="flex flex-col ml-2"> <span class="font-medium text-black truncate"><%= pessoa.nome %> <%= pessoa.sobrenome %></span> <span class="text-sm text-gray-400 w-48"><%= pessoa.data_nascimento.strftime('%d/%m/%Y') %> - <%= ((Time.zone.now - pessoa.data_nascimento.to_time) / 1.year.seconds).floor if pessoa.data_nascimento.present? %> anos</span> </div>
       </div>
   </li>
 </div>
