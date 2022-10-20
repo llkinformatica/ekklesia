@@ -1,6 +1,15 @@
 <div class="flex flex-col w-full h-24 py-4 bg-white shadow">
-  <%= link_to '<i class="fas fa-chevron-left" aria-hidden="true"></i> Pessoas'.html_safe, pessoas_path, class: "text-xs text-gray-700 mx-4 content-center w-full" %>
-  <p class="w-full mt-2 mx-4 text-lg text-gray-700">Adicionando uma pessoa</p>
+  <div class="flex justify-between h-16 content-center items-center">
+    <p class="w-full py-2 mx-4 text-lg text-gray-700">Adicionar Pessoa</p>
+    <div class='flex w-[60px] mr-8'>  
+        <%= link_to '<svg fill="#222222" version="1.1" width="32px" height="32px" id="Layer_1_1_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+            viewBox="0 0 16 16" style="enable-background:new 0 0 16 16;" xml:space="preserve">
+          <path d="M8,0C3.582,0,0,3.582,0,8s3.582,8,8,8s8-3.582,8-8S12.418,0,8,0z M10.354,12.646l-0.707,0.707L4.293,8l5.354-5.354
+            l0.707,0.707L5.707,8L10.354,12.646z"/>
+          </svg>'.html_safe, pessoas_path %>
+    </div>
+  </div>
+
 </div>
 
 <div class="mx-auto md:w-2/3 w-full">

@@ -1,14 +1,119 @@
-<a href='pessoas/<%= pessoa.id %>'>
-<div id="<%= dom_id pessoa %>" class="flex justify-between bg-white shadow my-1 py-2 w-full lg:px-4 border border-gray-300">
-  <li class="flex justify-between items-center bg-white mt-2 p-2 hover:shadow-lg rounded cursor-pointer transition">
-      <div class="flex ml-2"> 
-         <% if pessoa.imagem.attached? %>
-            <%= image_tag(pessoa.imagem, class: 'w-[50px] h-[50px] rounded-full') %>
-         <% else %>
-           <img src="https://i.imgur.com/aq39RMA.jpg" width="50" height="50" class="rounded-full">
-         <% end %>  
-         <div class="flex flex-col ml-2"> <span class="font-medium text-black truncate"><%= pessoa.nome %> <%= pessoa.sobrenome %></span> <span class="text-sm text-gray-400 w-48"><%= pessoa.data_nascimento.strftime('%d/%m/%Y') %> - <%= ((Time.zone.now - pessoa.data_nascimento.to_time) / 1.year.seconds).floor if pessoa.data_nascimento.present? %> anos</span> </div>
+<% if action_name != "show" %>
+  <a href='pessoas/<%= pessoa.id %>'>
+  <div id="<%= dom_id pessoa %>" class="flex justify-between bg-white shadow my-1 py-2 w-full lg:px-4 border border-gray-300">
+    <li class="flex justify-between items-center bg-white mt-2 p-2 hover:shadow-lg rounded cursor-pointer transition">
+        <div class="flex ml-2"> 
+          <% if pessoa.imagem.attached? %>
+              <%= image_tag(pessoa.imagem, class: 'w-[50px] h-[50px] rounded-full') %>
+          <% else %>
+            <img src="https://i.imgur.com/aq39RMA.jpg" width="50" height="50" class="rounded-full">
+          <% end %>  
+          <div class="flex flex-col ml-2"> <span class="font-medium text-black truncate"><%= pessoa.nome %> <%= pessoa.sobrenome %></span> <span class="text-sm text-gray-400 w-48"><%= pessoa.data_nascimento.strftime('%d/%m/%Y') %> - <%= ((Time.zone.now - pessoa.data_nascimento.to_time) / 1.year.seconds).floor if pessoa.data_nascimento.present? %> anos</span> </div>
+        </div>
+    </li>
+  </div>
+  </a>
+<% else %>
+
+<div id="<%= dom_id pessoa %>">
+
+  <div class="flex bg-white shadow-md p-4 mt-4 rounded-lg">
+
+    <div class="flex flex-wrap -mx-3 mb-3 p-4">
+
+        <div class="font-bold text-xl mb-2 text-gray-600 w-full"><%= pessoa.nome %> <%= pessoa.sobrenome %></div>
+
+        <hr class="my-6 border-gray-700" />
+
+        <p class="w-full sm:w-1/3 text-gray-500 mt-2">
+          <strong class="block font-medium text-gray-600 text-xs">Genero:</strong>
+          <%= pessoa.genero %>
+        </p>
+
+        <p class="w-full sm:w-1/3 text-gray-500 mt-2">
+          <strong class="block font-medium text-gray-600 text-xs">Estado Civil:</strong>
+          <%= pessoa.estado_civil %>
+        </p>
+
+        <p class="w-full sm:w-1/3 text-gray-500 mt-2">
+          <strong class="block font-medium text-gray-600 text-xs">Grau de Parentesco:</strong>
+          <%= pessoa.grau_parentesco %>
+        </p>
+
+        <p class="w-full sm:w-3/12 text-gray-500 mt-2">
+          <strong class="block font-medium text-gray-600 text-xs">Telefone:</strong>
+          <%= pessoa.telefone %>
+        </p>
+
+        <p class="w-full sm:w-3/12 text-gray-500 mt-2">
+          <strong class="block font-medium text-gray-600 text-xs">Celular:</strong>
+          <%= pessoa.celular %>
+        </p>
+
+        <p class="w-full sm:w-6/12 text-gray-500 mt-2">
+          <strong class="block font-medium text-gray-600 text-xs">Email:</strong>
+          <%= pessoa.email %>
+        </p>
+
+        <p class="w-full sm:w-9/12 text-gray-500 mt-2">
+          <strong class="block font-medium text-gray-600">Logradouro:</strong>
+          <%= pessoa.logradouro %>
+        </p>
+
+        <p class="w-full sm:w-3/12 text-gray-500 mt-2">
+          <strong class="block font-medium text-gray-600">Numero:</strong>
+          <%= pessoa.numero %>
+        </p>
+
+        <p class="w-full sm:w-6/12 text-gray-500 mt-2">
+          <strong class="block font-medium text-gray-600">Complemento:</strong>
+          <%= pessoa.complemento %>
+        </p>
+
+        <p class="w-full sm:w-6/12 text-gray-500 mt-2">
+          <strong class="block font-medium text-gray-600">Bairro:</strong>
+          <%= pessoa.bairro %>
+        </p>
+
+        <p class="w-full sm:w-7/12 text-gray-500 mt-2">
+          <strong class="block font-medium text-gray-600">Cidade:</strong>
+          <%= pessoa.cidade %>
+        </p>
+
+        <p class="w-full sm:w-2/12 text-gray-500 mt-2">
+          <strong class="block font-medium text-gray-600">Estado:</strong>
+          <%= pessoa.estado %>
+        </p>
+
+        <p class="w-full sm:w-3/12 text-gray-500 mt-2">
+          <strong class="block font-medium text-gray-600">Cep:</strong>
+          <%= pessoa.cep %>
+        </p>        
+
+        <p class="w-full sm:w-4/12 text-gray-500 mt-2">
+          <strong class="block font-medium text-gray-600">Data nascimento:</strong>
+          <%= pessoa.data_nascimento.strftime('%d/%m/%Y') if pessoa.data_nascimento.present? %>
+        </p>
+
+        <p class="w-full sm:w-4/12 text-gray-500 mt-2">
+          <strong class="block font-medium text-gray-600">Data falecimento:</strong>
+          <%= pessoa.data_falecimento.strftime('%d/%m/%Y') if pessoa.data_falecimento.present? %>
+        </p>
+
+        <p class="w-full sm:w-4/12 text-gray-500 mt-2">
+          <strong class="block font-medium text-gray-600">Data batismo:</strong>
+          <%= pessoa.data_batismo.strftime('%d/%m/%Y') if pessoa.data_batismo.present? %>
+        </p>        
+
+        <p class="w-full text-gray-500">
+          <strong class="block font-medium mb-1 text-gray-600">Bio:</strong>
+          <%= pessoa.bio %>
+        </p>        
+
       </div>
-  </li>
+
+  </div>
+
 </div>
-</a>
+
+<% end %>
