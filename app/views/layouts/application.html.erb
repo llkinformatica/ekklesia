@@ -46,6 +46,9 @@
   </head>
 
   <body>
+      <div class="py-5 px-3 bg-blue-700 sm:hidden">
+        <h2 class="text-1xl font-medium text-white"><%= Figaro.env.app_name %></h2>
+      </div>
       <div class="flex flex-direction-row">
         <%= render '/shared/sidebar' %>
         <div class="w-full h-screen bg-gray-300">
