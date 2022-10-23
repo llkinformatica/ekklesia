@@ -5,6 +5,8 @@ class PessoasController < ApplicationController
   def index
     if params[:query].present?
       @pagy, @pessoas = pagy(current_usuario.pessoas.where("nome LIKE ? or sobrenome LIKE ?", "%#{params[:query]}%", "%#{params[:query]}%").order(:nome))
+    elsif params[:aniversariantes].present?
+      @pagy, @pessoas = pagy(current_usuario.pessoas.where('DAY(data_nascimento) = ? AND MONTH(data_nascimento) = ?', Date.today.day, Date.today.month).order(:nome))
     else
       @pagy, @pessoas = pagy(current_usuario.pessoas.all.order(:nome))
     end

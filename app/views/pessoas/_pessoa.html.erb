@@ -6,9 +6,30 @@
           <% if pessoa.imagem.attached? %>
               <%= image_tag(pessoa.imagem, class: 'w-[50px] h-[50px] rounded-full') %>
           <% else %>
-            <img src="https://i.imgur.com/aq39RMA.jpg" width="50" height="50" class="rounded-full">
+            <% if pessoa.genero === 'Feminino' %>
+              <img src="https://i.imgur.com/aq39RMA.jpg" width="50" height="50" class="rounded-full">
+            <% else %>
+              <img src="https://imgpile.com/images/TeOqrx.jpg" width="50" height="50" class="rounded-full">
+            <% end %>
           <% end %>  
-          <div class="flex flex-col ml-2"> <span class="font-medium text-black truncate"><%= pessoa.nome %> <%= pessoa.sobrenome %></span> <span class="text-sm text-gray-400 w-48"><%= pessoa.data_nascimento.strftime('%d/%m/%Y') %> - <%= ((Time.zone.now - pessoa.data_nascimento.to_time) / 1.year.seconds).floor if pessoa.data_nascimento.present? %> anos</span> </div>
+          <div class="flex flex-col ml-2"> 
+            <span class="font-medium text-black truncate">
+              <%= pessoa.nome %> <%= pessoa.sobrenome %>
+            </span> 
+            <% if pessoa.data_nascimento.present? %>
+            <span class="flex justify-between text-sm text-gray-600 w-48">
+              <%= pessoa.data_nascimento.strftime('%d/%m/%Y') %> - <%= ((Time.zone.now - pessoa.data_nascimento.to_time) / 1.year.seconds).floor if pessoa.data_nascimento.present? %> anos
+              <% if pessoa.data_nascimento.strftime('%d/%m') === Date.today.strftime('%d/%m') %>
+                <% if pessoa.genero === 'Masculino'
+                  cor_ico = '#5178b3'
+                else 
+                  cor_ico = '#ce788c'
+                end %>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="16px" height="16px" fill=<%= cor_ico %> ><path d="M448 384c-28.02 0-31.26-32-74.5-32-43.43 0-46.825 32-74.75 32-27.695 0-31.454-32-74.75-32-42.842 0-47.218 32-74.5 32-28.148 0-31.202-32-74.75-32-43.547 0-46.653 32-74.75 32v-80c0-26.5 21.5-48 48-48h16V112h64v144h64V112h64v144h64V112h64v144h16c26.5 0 48 21.5 48 48v80zm0 128H0v-96c43.356 0 46.767-32 74.75-32 27.951 0 31.253 32 74.75 32 42.843 0 47.217-32 74.5-32 28.148 0 31.201 32 74.75 32 43.357 0 46.767-32 74.75-32 27.488 0 31.252 32 74.5 32v96zM96 96c-17.75 0-32-14.25-32-32 0-31 32-23 32-64 12 0 32 29.5 32 56s-14.25 40-32 40zm128 0c-17.75 0-32-14.25-32-32 0-31 32-23 32-64 12 0 32 29.5 32 56s-14.25 40-32 40zm128 0c-17.75 0-32-14.25-32-32 0-31 32-23 32-64 12 0 32 29.5 32 56s-14.25 40-32 40z"/></svg>                
+              <% end %>
+            </span>
+            <% end %>
+          </div>
         </div>
     </li>
   </div>
@@ -21,7 +42,14 @@
 
     <div class="flex flex-wrap -mx-3 mb-3 p-4">
 
-        <div class="font-bold text-xl mb-2 text-gray-600 w-full"><%= pessoa.nome %> <%= pessoa.sobrenome %></div>
+        <div class="relative w-full flex flex-wrap items-center text-gray-500 mt-2">
+
+          <% if pessoa.imagem.attached? %>
+              <%= image_tag(pessoa.imagem, class: 'rounded-full w-[100px] h-[100px]') %>
+          <% end %>     
+          <div class="sm:w-3/4 font-bold text-xl mb-2 text-gray-600 w-full mx-4"><%= pessoa.nome %> <%= pessoa.sobrenome %></div>
+
+        </div>
 
         <hr class="my-6 border-gray-700" />
 
