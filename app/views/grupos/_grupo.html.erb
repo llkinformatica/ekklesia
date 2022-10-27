@@ -1,10 +1,22 @@
-<turbo-frame id="grupos">
-  <div id="<%= dom_id grupo %>">
-    <p class="flex w-full justify-between">
-      <%= grupo.descricao %> 
-      <%= link_to "Ver Grupo", grupo, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-      <%= link_to 'Edit this grupo', edit_grupo_path(grupo), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-      <hr class="mt-6">
-    </p>
-  </div>
-</turbo-frame>
+<% if action_name != "show" %>
+  <a href='grupos/<%= grupo.id %>'>
+<% end %>
+
+<div id="<%= dom_id grupo %>" class="flex justify-between bg-white shadow my-1 py-2 w-full lg:px-4 border border-gray-300">
+  <li class="flex justify-between items-center bg-white mt-2 p-2 hover:shadow-lg rounded cursor-pointer transition">
+      <div class="flex ml-2">  
+        <div class="flex flex-col ml-2"> 
+          <span class="font-medium text-black truncate">
+            <%= grupo.nome_grupo %>
+          </span> 
+          <span class="text-sm text-gray-600 w-48">
+            <%= grupo.descricao.html_safe %>
+          </span>
+        </div>
+      </div>
+  </li>
+</div>
+
+<% if action_name != "show" %>
+  </a>
+<% end %>
